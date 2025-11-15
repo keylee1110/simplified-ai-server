@@ -9,7 +9,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const API_BASE_URL = 'http://localhost:4000'; // server port 4000
+const API_BASE_URL = 'https://simplified-ai-server.onrender.com'; 
 
 async function getPortfolioSuggestions(userInfo) {
   try {

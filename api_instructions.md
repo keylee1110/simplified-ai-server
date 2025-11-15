@@ -2,42 +2,16 @@
 
 Tài liệu này cung cấp hướng dẫn cho các nhà phát triển frontend về cách tương tác với API của server.
 
-## 1. Cài đặt và Khởi động Server (Cục bộ)
-
-Để chạy server cục bộ, bạn cần đảm bảo đã cài đặt Node.js và npm.
-
-1.  **Cài đặt dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Tạo file `.env`:**
-    Tạo một file có tên `.env` ở thư mục gốc của project và thêm các biến môi trường sau:
-    ```
-    GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-    GEMINI_MODEL=gemini-2.5-flash
-    PORT=4000
-    API_KEY=YOUR_SECRET_API_KEY_FOR_PORTFOLIO_SUGGESTIONS
-    ```
-    *   Thay thế `YOUR_GEMINI_API_KEY` bằng khóa API của bạn từ Google Gemini.
-    *   `GEMINI_MODEL` có thể là `gemini-2.5-flash` hoặc các model khác bạn muốn sử dụng.
-    *   `PORT` là cổng mà server sẽ chạy (mặc định là 4000).
-    *   `API_KEY` là một khóa bí mật tùy chọn để bảo vệ endpoint `/portfolio-suggestions`. Nếu bạn không muốn sử dụng bảo mật này, bạn có thể bỏ qua dòng `API_KEY` trong file `.env` và server sẽ không yêu cầu `x-api-key` cho endpoint đó.
-3.  **Khởi động server:**
-    ```bash
-    npm start
-    ```
-    Server sẽ chạy trên `http://localhost:PORT` (ví dụ: `http://localhost:4000`).
-
-## 2. Base URL
+## 1. Base URL
 
 *   **Khi chạy cục bộ:** `http://localhost:4000` (hoặc cổng bạn đã cấu hình)
 *   **Khi triển khai:** `https://simplified-ai-server.onrender.com`
 
 Tất cả các request API sẽ được gửi đến Base URL này.
 
-## 3. Các Endpoint API
+## 2. Các Endpoint API
 
-### 3.1. Lấy câu trích dẫn động lực hàng ngày
+### 2.1. Lấy câu trích dẫn động lực hàng ngày
 
 *   **Endpoint:** `/quote-of-the-day`
 *   **Method:** `GET`
@@ -62,7 +36,7 @@ Tất cả các request API sẽ được gửi đến Base URL này.
     }
     ```
 
-### 3.2. Lấy gợi ý Portfolio
+### 2.2. Lấy gợi ý Portfolio
 
 *   **Endpoint:** `/portfolio-suggestions`
 *   **Method:** `POST`
@@ -104,7 +78,7 @@ Tất cả các request API sẽ được gửi đến Base URL này.
     }
     ```
 
-## 4. CORS (Cross-Origin Resource Sharing)
+## 3. CORS (Cross-Origin Resource Sharing)
 
 Server đã được cấu hình để cho phép CORS, nghĩa là frontend chạy trên một domain khác vẫn có thể gọi API này.
 

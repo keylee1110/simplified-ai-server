@@ -437,6 +437,10 @@ Trả về CHỈ MỘT JSON object, không có markdown:
 
 
 
+app.get("/", (req, res) => {
+  res.status(200).send("AI Server is running!");
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`✅ AI Server running on http://localhost:${PORT}`);

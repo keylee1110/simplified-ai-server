@@ -2,7 +2,7 @@
 
 Tài liệu này cung cấp hướng dẫn cho các nhà phát triển frontend về cách tương tác với API của server.
 
-## 1. Cài đặt và Khởi động Server
+## 1. Cài đặt và Khởi động Server (Cục bộ)
 
 Để chạy server cục bộ, bạn cần đảm bảo đã cài đặt Node.js và npm.
 
@@ -24,15 +24,16 @@ Tài liệu này cung cấp hướng dẫn cho các nhà phát triển frontend 
     *   `API_KEY` là một khóa bí mật tùy chọn để bảo vệ endpoint `/portfolio-suggestions`. Nếu bạn không muốn sử dụng bảo mật này, bạn có thể bỏ qua dòng `API_KEY` trong file `.env` và server sẽ không yêu cầu `x-api-key` cho endpoint đó.
 3.  **Khởi động server:**
     ```bash
-    node index.js
+    npm start
     ```
     Server sẽ chạy trên `http://localhost:PORT` (ví dụ: `http://localhost:4000`).
 
 ## 2. Base URL
 
-Tất cả các request API sẽ được gửi đến base URL sau (khi chạy cục bộ):
+*   **Khi chạy cục bộ:** `http://localhost:4000` (hoặc cổng bạn đã cấu hình)
+*   **Khi triển khai:** `https://simplified-ai-server.onrender.com`
 
-`http://localhost:4000` (hoặc cổng bạn đã cấu hình)
+Tất cả các request API sẽ được gửi đến Base URL này.
 
 ## 3. Các Endpoint API
 
@@ -43,7 +44,7 @@ Tất cả các request API sẽ được gửi đến base URL sau (khi chạy 
 *   **Mô tả:** Trả về một câu trích dẫn động lực chính và một câu nói vui theo phong cách Gen Z liên quan.
 *   **Request:**
     ```
-    GET http://localhost:4000/quote-of-the-day
+    GET https://simplified-ai-server.onrender.com/quote-of-the-day
     ```
 *   **Response (JSON):**
     ```json
@@ -67,7 +68,7 @@ Tất cả các request API sẽ được gửi đến base URL sau (khi chạy 
 *   **Method:** `POST`
 *   **Mô tả:** Dựa trên thông tin người dùng cung cấp, AI sẽ đề xuất bố cục, chủ đề màu, font chữ, bio cá nhân và các gợi ý mạng xã hội cho portfolio.
 *   **Authentication:**
-    Nếu bạn đã cấu hình `API_KEY` trong file `.env`, bạn phải gửi khóa này trong header `x-api-key`.
+    Nếu bạn đã cấu hình `API_KEY` trên dịch vụ hosting, bạn phải gửi khóa này trong header `x-api-key`.
     ```
     x-api-key: YOUR_SECRET_API_KEY_FOR_PORTFOLIO_SUGGESTIONS
     ```
@@ -111,5 +112,5 @@ Server đã được cấu hình để cho phép CORS, nghĩa là frontend chạ
 
 **Lưu ý:**
 *   Đảm bảo rằng `GEMINI_API_KEY` của bạn được bảo mật và không được đưa trực tiếp vào mã nguồn frontend.
-*   Nếu bạn triển khai server lên môi trường production, hãy thay đổi `http://localhost:4000` bằng URL của server đã triển khai.
+*   Khi gọi API từ frontend, hãy thay thế `YOUR_DEPLOYED_BASE_URL` bằng URL thực tế của server đã triển khai của bạn.
 *   Đối với endpoint `/portfolio-suggestions`, nếu bạn sử dụng `API_KEY`, hãy đảm bảo rằng khóa này được quản lý an toàn và không bị lộ ra ngoài.
